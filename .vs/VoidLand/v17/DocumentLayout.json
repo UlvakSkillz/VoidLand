@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\austi\\source\\repos\\VoidLand\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D91A37E8-B5C7-4A64-9943-76B8A8CD3ADC}|VoidLand\\VoidLand.csproj|c:\\users\\austi\\source\\repos\\voidland\\voidland\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D91A37E8-B5C7-4A64-9943-76B8A8CD3ADC}|VoidLand\\VoidLand.csproj|solutionrelative:voidland\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.cs",
+              "DocumentMoniker": "C:\\Users\\austi\\source\\repos\\VoidLand\\VoidLand\\main.cs",
+              "RelativeDocumentMoniker": "VoidLand\\main.cs",
+              "ToolTip": "C:\\Users\\austi\\source\\repos\\VoidLand\\VoidLand\\main.cs",
+              "RelativeToolTip": "VoidLand\\main.cs",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAcwIYAAAB8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-25T15:12:07.85Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
