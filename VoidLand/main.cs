@@ -289,31 +289,37 @@ namespace VoidLand
             groundCollider.collider = meshCollider;
             plane.GetComponent<Renderer>().material.shader = Shader.Find("Universal Render Pipeline/Lit");
             plane.GetComponent<Renderer>().material.color = new Color(r, g, b);
+            plane.GetComponent<Renderer>().material.shader = Shader.Find("Universal Render Pipeline/Unlit");
             GameObject plane2 = GameObject.Instantiate(plane);
             plane2.transform.parent = cube.transform;
             plane2.transform.position = new Vector3(size / 2, size / 2, 0);
             plane2.transform.rotation = Quaternion.Euler(0, 0, 90);
             plane2.GetComponent<Renderer>().material.color = new Color(r, g, b);
+            plane2.GetComponent<Renderer>().material.shader = Shader.Find("Universal Render Pipeline/Unlit");
             GameObject plane3 = GameObject.Instantiate(plane2);
             plane3.transform.parent = cube.transform;
             plane3.transform.position = new Vector3(-size / 2, size / 2, 0);
             plane3.transform.rotation = Quaternion.Euler(0, 0, 90);
             plane3.GetComponent<Renderer>().material.color = new Color(r, g, b);
+            plane3.GetComponent<Renderer>().material.shader = Shader.Find("Universal Render Pipeline/Unlit");
             GameObject plane4 = GameObject.Instantiate(plane2);
             plane4.transform.parent = cube.transform;
             plane4.transform.position = new Vector3(0, size / 2, size / 2);
             plane4.transform.rotation = Quaternion.Euler(90, 0, 0);
             plane4.GetComponent<Renderer>().material.color = new Color(r, g, b);
+            plane4.GetComponent<Renderer>().material.shader = Shader.Find("Universal Render Pipeline/Unlit");
             GameObject plane5 = GameObject.Instantiate(plane2);
             plane5.transform.parent = cube.transform;
             plane5.transform.position = new Vector3(0, size / 2, -size / 2);
             plane5.transform.rotation = Quaternion.Euler(90, 0, 0);
             plane5.GetComponent<Renderer>().material.color = new Color(r, g, b);
+            plane5.GetComponent<Renderer>().material.shader = Shader.Find("Universal Render Pipeline/Unlit");
             GameObject plane6 = GameObject.Instantiate(plane2);
             plane6.transform.parent = cube.transform;
             plane6.transform.position = new Vector3(0, size, 0);
             plane6.transform.rotation = Quaternion.Euler(0, 0, 0);
             plane6.GetComponent<Renderer>().material.color = new Color(r, g, b);
+            plane6.GetComponent<Renderer>().material.shader = Shader.Find("Universal Render Pipeline/Unlit");
         }
     }
 }
