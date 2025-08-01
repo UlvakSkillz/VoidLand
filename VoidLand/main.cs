@@ -32,7 +32,7 @@ namespace VoidLand
         public override void OnLateInitializeMelon()
         {
             VoidLand.ModName = "VoidLand";
-            VoidLand.ModVersion = "1.0.0";
+            VoidLand.ModVersion = "1.1.1";
             VoidLand.SetFolder("VoidLand");
             VoidLand.AddToList("Map Size", 125, "Determins the size of the VoidLand", new Tags { });
             VoidLand.AddToList("Return to Gym", false, 0, "Loads from VoidLand to Gym", new Tags { DoNotSave = true });
@@ -140,13 +140,13 @@ namespace VoidLand
                 matchmakerBackPanel.transform.localScale = new Vector3(3f, 2.41f, 0.02f);
                 voidLandParent = new GameObject();
                 voidLandParent.name = "VoidLand";
-                voidLandTextPanel = GameObject.Instantiate(Calls.GameObjects.Gym.Logic.HeinhouserProducts.MatchConsole.RankRelaxControls.GetGameObject().transform.GetChild(17).gameObject);
+                voidLandTextPanel = GameObject.Instantiate(Calls.GameObjects.Gym.Logic.HeinhouserProducts.MatchConsole.MatchmakingSettings.GetGameObject().transform.GetChild(1).gameObject);
                 voidLandTextPanel.name = "VoidLand Plate";
                 voidLandTextPanel.transform.parent = voidLandParent.transform;
                 voidLandTextPanel.transform.position = new Vector3(7.45f, 1.9f, 10.12f);
                 voidLandTextPanel.transform.rotation = Quaternion.Euler(90f, 122.8f, 0f);
                 voidLandTextPanel.transform.localScale = new Vector3(0.29f, 0.3036f, 0.362f);
-                GameObject textPanelTextGO = GameObject.Instantiate(Calls.GameObjects.Gym.Logic.HeinhouserProducts.MatchConsole.RankRelaxControls.GetGameObject().transform.GetChild(15).GetChild(6).gameObject);
+                GameObject textPanelTextGO = GameObject.Instantiate(Calls.GameObjects.Gym.Logic.HeinhouserProducts.MatchConsole.MatchmakingSettings.GetGameObject().transform.GetChild(3).gameObject);
                 textPanelTextGO.transform.parent = voidLandTextPanel.transform;
                 textPanelTextGO.name = "Text";
                 textPanelTextGO.transform.localPosition = new Vector3(0.04f, 0.74f, 0f);
