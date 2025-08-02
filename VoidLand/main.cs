@@ -28,11 +28,13 @@ namespace VoidLand
         private int size;
         private float r, g, b;
         private bool returnToGym;
+        private Shader unlit;
 
         public override void OnLateInitializeMelon()
         {
+            unlit = Shader.Find("Universal Render Pipeline/Unlit");
             VoidLand.ModName = "VoidLand";
-            VoidLand.ModVersion = "1.1.1";
+            VoidLand.ModVersion = "1.2.1";
             VoidLand.SetFolder("VoidLand");
             VoidLand.AddToList("Map Size", 125, "Determins the size of the VoidLand", new Tags { });
             VoidLand.AddToList("Return to Gym", false, 0, "Loads from VoidLand to Gym", new Tags { DoNotSave = true });
@@ -54,6 +56,9 @@ namespace VoidLand
             b = ((float)(int)VoidLand.Settings[4].SavedValue) / 255;
             UI.instance.UI_Initialized += UIInit;
             Calls.onMapInitialized += SceneInit;
+            dontDisableGameObject.Add("UniverseLibBehaviour");
+            dontDisableGameObject.Add("ExplorerBehaviour");
+            dontDisableGameObject.Add("SteamManager");
             dontDisableGameObject.Add("LanguageManager");
             dontDisableGameObject.Add("PhotonMono");
             dontDisableGameObject.Add("Game Instance");
@@ -67,6 +72,7 @@ namespace VoidLand
             dontDisableGameObject.Add("VoiceLogger");
             dontDisableGameObject.Add("Player Controller(Clone)");
             dontDisableGameObject.Add("Health");
+            dontDisableGameObject.Add("New Game Object");
         }
 
         private void Save()
@@ -102,7 +108,7 @@ namespace VoidLand
         {
             if (voidLandActive)
             {
-                float playerY = PlayerManager.instance.localPlayer.Controller.gameObject.transform.GetChild(2).GetChild(13).GetChild(0).position.y;
+                float playerY = PlayerManager.instance.localPlayer.Controller.gameObject.transform.GetChild(2).GetChild(3).position.y;
                 if (!respawning && (playerY <= -10))
                 {
                     respawning = true;
@@ -132,7 +138,7 @@ namespace VoidLand
             {
                 GameObject matchmakerBackPanel = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 matchmakerBackPanel.name = "BackPanel";
-                matchmakerBackPanel.GetComponent<Renderer>().material.shader = Shader.Find("Universal Render Pipeline/Lit");
+                matchmakerBackPanel.GetComponent<Renderer>().material.shader = unlit;
                 matchmakerBackPanel.GetComponent<Renderer>().material.color = new Color(0, 1, 0.814f);
                 matchmakerBackPanel.transform.parent = Calls.GameObjects.Gym.Logic.HeinhouserProducts.MatchConsole.GetGameObject().transform;
                 matchmakerBackPanel.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -206,7 +212,7 @@ namespace VoidLand
             foreach (GameObject temp in ddolGameObjects)
             {
                 //if GameObject is active (turned on) and it's not in a list of GameObjects to not turn off
-                if (temp.active && !dontDisableGameObject.Contains(temp.name))
+                if (temp.activeSelf && !dontDisableGameObject.Contains(temp.name))
                 {
                     //turn GameObject off
                     temp.SetActive(false);
@@ -218,7 +224,7 @@ namespace VoidLand
             foreach (GameObject temp in SceneGameObjects)
             {
                 //if GameObject is active (turned on) and it's not in a list of GameObjects to not turn off
-                if (temp.active && !dontDisableGameObject.Contains(temp.name))
+                if (temp.activeSelf && !dontDisableGameObject.Contains(temp.name))
                 {
                     //turn GameObject off
                     temp.SetActive(false);
@@ -287,39 +293,38 @@ namespace VoidLand
             Component.Destroy(plane.GetComponent<BoxCollider>());
             groundCollider.isMainGroundCollider = true;
             groundCollider.collider = meshCollider;
-            plane.GetComponent<Renderer>().material.shader = Shader.Find("Universal Render Pipeline/Lit");
+            plane.GetComponent<Renderer>().material.shader = unlit;
             plane.GetComponent<Renderer>().material.color = new Color(r, g, b);
-            plane.GetComponent<Renderer>().material.shader = Shader.Find("Universal Render Pipeline/Unlit");
             GameObject plane2 = GameObject.Instantiate(plane);
             plane2.transform.parent = cube.transform;
             plane2.transform.position = new Vector3(size / 2, size / 2, 0);
             plane2.transform.rotation = Quaternion.Euler(0, 0, 90);
+            plane2.GetComponent<Renderer>().material.shader = unlit;
             plane2.GetComponent<Renderer>().material.color = new Color(r, g, b);
-            plane2.GetComponent<Renderer>().material.shader = Shader.Find("Universal Render Pipeline/Unlit");
             GameObject plane3 = GameObject.Instantiate(plane2);
             plane3.transform.parent = cube.transform;
             plane3.transform.position = new Vector3(-size / 2, size / 2, 0);
             plane3.transform.rotation = Quaternion.Euler(0, 0, 90);
+            plane3.GetComponent<Renderer>().material.shader = unlit;
             plane3.GetComponent<Renderer>().material.color = new Color(r, g, b);
-            plane3.GetComponent<Renderer>().material.shader = Shader.Find("Universal Render Pipeline/Unlit");
             GameObject plane4 = GameObject.Instantiate(plane2);
             plane4.transform.parent = cube.transform;
             plane4.transform.position = new Vector3(0, size / 2, size / 2);
             plane4.transform.rotation = Quaternion.Euler(90, 0, 0);
+            plane4.GetComponent<Renderer>().material.shader = unlit;
             plane4.GetComponent<Renderer>().material.color = new Color(r, g, b);
-            plane4.GetComponent<Renderer>().material.shader = Shader.Find("Universal Render Pipeline/Unlit");
             GameObject plane5 = GameObject.Instantiate(plane2);
             plane5.transform.parent = cube.transform;
             plane5.transform.position = new Vector3(0, size / 2, -size / 2);
             plane5.transform.rotation = Quaternion.Euler(90, 0, 0);
+            plane5.GetComponent<Renderer>().material.shader = unlit;
             plane5.GetComponent<Renderer>().material.color = new Color(r, g, b);
-            plane5.GetComponent<Renderer>().material.shader = Shader.Find("Universal Render Pipeline/Unlit");
             GameObject plane6 = GameObject.Instantiate(plane2);
             plane6.transform.parent = cube.transform;
             plane6.transform.position = new Vector3(0, size, 0);
             plane6.transform.rotation = Quaternion.Euler(0, 0, 0);
+            plane6.GetComponent<Renderer>().material.shader = unlit;
             plane6.GetComponent<Renderer>().material.color = new Color(r, g, b);
-            plane6.GetComponent<Renderer>().material.shader = Shader.Find("Universal Render Pipeline/Unlit");
         }
     }
 }
