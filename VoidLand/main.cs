@@ -20,7 +20,7 @@ namespace VoidLand
         private bool voidLandActive = false;
         private bool respawning = false;
         private GameObject buttonToSwaptoVoidLand, voidLandTextPanel, voidLandParent, cube;
-        private List<string> dontDisableGameObject = new List<string>();
+        public static List<string> dontDisableGameObject = new List<string>();
         private List<GameObject> DisabledDDOLGameObjects = new List<GameObject>();
         private GameObject plane;
         UI UI = UI.instance;
@@ -34,7 +34,7 @@ namespace VoidLand
         {
             unlit = Shader.Find("Universal Render Pipeline/Unlit");
             VoidLand.ModName = "VoidLand";
-            VoidLand.ModVersion = "1.2.1";
+            VoidLand.ModVersion = "1.3.0";
             VoidLand.SetFolder("VoidLand");
             VoidLand.AddToList("Map Size", 125, "Determins the size of the VoidLand", new Tags { });
             VoidLand.AddToList("Return to Gym", false, 0, "Loads from VoidLand to Gym", new Tags { DoNotSave = true });
@@ -73,6 +73,7 @@ namespace VoidLand
             dontDisableGameObject.Add("Player Controller(Clone)");
             dontDisableGameObject.Add("Health");
             dontDisableGameObject.Add("New Game Object");
+            dontDisableGameObject.Add("LCK Tablet");
         }
 
         private void Save()
@@ -140,19 +141,19 @@ namespace VoidLand
                 matchmakerBackPanel.name = "BackPanel";
                 matchmakerBackPanel.GetComponent<Renderer>().material.shader = unlit;
                 matchmakerBackPanel.GetComponent<Renderer>().material.color = new Color(0, 1, 0.814f);
-                matchmakerBackPanel.transform.parent = Calls.GameObjects.Gym.Logic.HeinhouserProducts.MatchConsole.GetGameObject().transform;
+                matchmakerBackPanel.transform.parent = Calls.GameObjects.Gym.LOGIC.Heinhouserproducts.MatchConsole.GetGameObject().transform;
                 matchmakerBackPanel.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 matchmakerBackPanel.transform.localPosition = new Vector3(-0.4915f, 1.2083f, -0.0151f);
                 matchmakerBackPanel.transform.localScale = new Vector3(3f, 2.41f, 0.02f);
                 voidLandParent = new GameObject();
                 voidLandParent.name = "VoidLand";
-                voidLandTextPanel = GameObject.Instantiate(Calls.GameObjects.Gym.Logic.HeinhouserProducts.MatchConsole.MatchmakingSettings.GetGameObject().transform.GetChild(1).gameObject);
+                voidLandTextPanel = GameObject.Instantiate(Calls.GameObjects.Gym.LOGIC.Heinhouserproducts.MatchConsole.MatchmakingSettings.GetGameObject().transform.GetChild(1).gameObject);
                 voidLandTextPanel.name = "VoidLand Plate";
                 voidLandTextPanel.transform.parent = voidLandParent.transform;
                 voidLandTextPanel.transform.position = new Vector3(7.45f, 1.9f, 10.12f);
                 voidLandTextPanel.transform.rotation = Quaternion.Euler(90f, 122.8f, 0f);
                 voidLandTextPanel.transform.localScale = new Vector3(0.29f, 0.3036f, 0.362f);
-                GameObject textPanelTextGO = GameObject.Instantiate(Calls.GameObjects.Gym.Logic.HeinhouserProducts.MatchConsole.MatchmakingSettings.GetGameObject().transform.GetChild(3).gameObject);
+                GameObject textPanelTextGO = GameObject.Instantiate(Calls.GameObjects.Gym.LOGIC.Heinhouserproducts.MatchConsole.MatchmakingSettings.GetGameObject().transform.GetChild(3).gameObject);
                 textPanelTextGO.transform.parent = voidLandTextPanel.transform;
                 textPanelTextGO.name = "Text";
                 textPanelTextGO.transform.localPosition = new Vector3(0.04f, 0.74f, 0f);
@@ -246,7 +247,7 @@ namespace VoidLand
         private void DeloadGym()
         {
             ResetStructures();
-            GameObject.Destroy(Calls.GameObjects.Gym.Logic.Bounds.SceneBoundaryPlayer.GetGameObject());
+            GameObject.Destroy(Calls.GameObjects.Gym.LOGIC.Bounds.SceneBoundaryPlayerGYM.GetGameObject());
             TurnOffAllExtraRootObjects();
         }
 
