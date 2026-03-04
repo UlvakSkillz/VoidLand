@@ -41,7 +41,6 @@ C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\0Harmony.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\MonoMod.Utils.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\MonoMod.RuntimeDetour.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\bHapticsLib.dll
-C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\AssetRipper.VersionUtilities.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Mono.Cecil.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\AssetsTools.NET.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Tomlet.dll
@@ -61,7 +60,6 @@ C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Il2CppSystem.Core.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Iced.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Unity.XR.Management.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\UnityEngine.Physics2DModule.dll
-C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Il2CppSystem.Numerics.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\UnityEngine.UnityWebRequestModule.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\UnityEngine.SubsystemsModule.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\UnityEngine.AIModule.dll
@@ -87,7 +85,6 @@ C:\Users\austi\source\repos\VoidLand\VoidLand\obj\Debug\VoidLand.csproj.CoreComp
 C:\Users\austi\source\repos\VoidLand\VoidLand\obj\Debug\VoidLand.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\obj\Debug\VoidLand.pdb
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Il2CppLIV.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Il2CppInterop.Generator.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Il2CppInterop.HarmonySupport.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\UnityEngine.AssetBundleModule.dll
@@ -96,9 +93,7 @@ C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\MonoMod.ILHelpers.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\obj\Debug\VoidLand.csproj.Up2Date
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Il2CppLIV.LCK.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Il2CppLIV.NativeAudioBridge.dll
-C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Il2CppSystem.Net.Http.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Il2CppNativeGallery.dll
-C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Il2CppNewtonsoft.Json.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Unity.VisualEffectGraph.Runtime.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Unity.RenderPipelines.GPUDriven.Runtime.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Unity.Collections.dll
@@ -106,8 +101,11 @@ C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\UnityEngine.UnityAnalyti
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\UnityEngine.PropertiesModule.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\UnityEngine.HierarchyCoreModule.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\UnityEngine.InputForUIModule.dll
-C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Il2CppSystem.Runtime.Serialization.dll
-C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Il2CppSystem.Data.dll
-C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Il2CppSystem.Xml.Linq.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\UnityEngine.TerrainModule.dll
 C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Unity.Burst.dll
+C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Unity.Profiling.Core.dll
+C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\AssetRipper.Primitives.dll
+C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Il2CppLIV.LCKCore.dll
+C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Il2CppLIV.LCKCore.ThirdParty.MessagePack.dll
+C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\MelonLoader.pdb
+C:\Users\austi\source\repos\VoidLand\VoidLand\bin\Debug\Il2CppSystem.Numerics.dll

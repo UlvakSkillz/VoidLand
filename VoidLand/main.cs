@@ -4,7 +4,7 @@ using Il2CppRUMBLE.MoveSystem;
 using Il2CppRUMBLE.Players.Subsystems;
 using Il2CppTMPro;
 using MelonLoader;
-using RumbleModdingAPI;
+using RumbleModdingAPI.RMAPI;
 using RumbleModUI;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,7 +34,7 @@ namespace VoidLand
         {
             unlit = Shader.Find("Universal Render Pipeline/Unlit");
             VoidLand.ModName = "VoidLand";
-            VoidLand.ModVersion = "1.3.0";
+            VoidLand.ModVersion = "1.4.1";
             VoidLand.SetFolder("VoidLand");
             VoidLand.AddToList("Map Size", 125, "Determins the size of the VoidLand", new Tags { });
             VoidLand.AddToList("Return to Gym", false, 0, "Loads from VoidLand to Gym", new Tags { DoNotSave = true });
@@ -55,7 +55,7 @@ namespace VoidLand
             g = ((float)(int)VoidLand.Settings[3].SavedValue) / 255;
             b = ((float)(int)VoidLand.Settings[4].SavedValue) / 255;
             UI.instance.UI_Initialized += UIInit;
-            Calls.onMapInitialized += SceneInit;
+            Actions.onMapInitialized += SceneInit;
             dontDisableGameObject.Add("UniverseLibBehaviour");
             dontDisableGameObject.Add("ExplorerBehaviour");
             dontDisableGameObject.Add("SteamManager");
@@ -67,13 +67,18 @@ namespace VoidLand
             dontDisableGameObject.Add("LIV");
             dontDisableGameObject.Add("UniverseLibCanvas");
             dontDisableGameObject.Add("UE_Freecam");
-            dontDisableGameObject.Add("--------------SCENE--------------");
+            dontDisableGameObject.Add("LIGHTING");
+            dontDisableGameObject.Add("LOGIC");
             dontDisableGameObject.Add("!ftraceLightmaps");
             dontDisableGameObject.Add("VoiceLogger");
             dontDisableGameObject.Add("Player Controller(Clone)");
-            dontDisableGameObject.Add("Health");
             dontDisableGameObject.Add("New Game Object");
             dontDisableGameObject.Add("LCK Tablet");
+        }
+
+        public static void AddNameToDontDisable(string name)
+        {
+            dontDisableGameObject.Add(name);
         }
 
         private void Save()
@@ -127,33 +132,37 @@ namespace VoidLand
             currentScene = sceneName;
             if (voidLandActive)
             {
+                for (int i = 0; i < cameras.Length; i++)
+                {
+                    cameras[i].useOcclusionCulling = cameraOcclusionBeforeEditValues[i];
+                }
                 ReactivateDDOLObjects();
                 voidLandActive = false;
             }
             gymInit = false;
         }
 
-        private void SceneInit()
+        private void SceneInit(string map)
         {
-            if ((currentScene == "Gym") && !gymInit)
+            if ((map == "Gym") && !gymInit)
             {
                 GameObject matchmakerBackPanel = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 matchmakerBackPanel.name = "BackPanel";
                 matchmakerBackPanel.GetComponent<Renderer>().material.shader = unlit;
                 matchmakerBackPanel.GetComponent<Renderer>().material.color = new Color(0, 1, 0.814f);
-                matchmakerBackPanel.transform.parent = Calls.GameObjects.Gym.LOGIC.Heinhouserproducts.MatchConsole.GetGameObject().transform;
+                matchmakerBackPanel.transform.parent = GameObjects.Gym.INTERACTABLES.MatchConsole.GetGameObject().transform;
                 matchmakerBackPanel.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 matchmakerBackPanel.transform.localPosition = new Vector3(-0.4915f, 1.2083f, -0.0151f);
                 matchmakerBackPanel.transform.localScale = new Vector3(3f, 2.41f, 0.02f);
                 voidLandParent = new GameObject();
                 voidLandParent.name = "VoidLand";
-                voidLandTextPanel = GameObject.Instantiate(Calls.GameObjects.Gym.LOGIC.Heinhouserproducts.MatchConsole.MatchmakingSettings.GetGameObject().transform.GetChild(1).gameObject);
+                voidLandTextPanel = GameObject.Instantiate(GameObjects.Gym.INTERACTABLES.MatchConsole.MatchmakingSettings.TitleBar.GetGameObject());
                 voidLandTextPanel.name = "VoidLand Plate";
                 voidLandTextPanel.transform.parent = voidLandParent.transform;
                 voidLandTextPanel.transform.position = new Vector3(7.45f, 1.9f, 10.12f);
                 voidLandTextPanel.transform.rotation = Quaternion.Euler(90f, 122.8f, 0f);
                 voidLandTextPanel.transform.localScale = new Vector3(0.29f, 0.3036f, 0.362f);
-                GameObject textPanelTextGO = GameObject.Instantiate(Calls.GameObjects.Gym.LOGIC.Heinhouserproducts.MatchConsole.MatchmakingSettings.GetGameObject().transform.GetChild(3).gameObject);
+                GameObject textPanelTextGO = GameObject.Instantiate(GameObjects.Gym.INTERACTABLES.MatchConsole.MatchmakingSettings.TitleText.GetGameObject());
                 textPanelTextGO.transform.parent = voidLandTextPanel.transform;
                 textPanelTextGO.name = "Text";
                 textPanelTextGO.transform.localPosition = new Vector3(0.04f, 0.74f, 0f);
@@ -161,7 +170,7 @@ namespace VoidLand
                 textPanelTextGO.transform.localScale = new Vector3(6.0414f, 3.7636f, 6.462f);
                 TextMeshPro voidLandTextPanelTMP = textPanelTextGO.GetComponent<TextMeshPro>();
                 voidLandTextPanelTMP.text = "VoidLand";
-                buttonToSwaptoVoidLand = Calls.Create.NewButton();
+                buttonToSwaptoVoidLand = Create.NewButton();
                 buttonToSwaptoVoidLand.name = "VoidLandButton";
                 buttonToSwaptoVoidLand.transform.parent = voidLandParent.transform;
                 buttonToSwaptoVoidLand.transform.position = new Vector3(7.67f, 1.7f, 10f);
@@ -170,7 +179,8 @@ namespace VoidLand
                 {
                     MelonCoroutines.Start(ToVoidLandPressed());
                 }));
-                voidLandParent.transform.position = new Vector3(0.72f, 0, -0.53f);
+                voidLandParent.transform.position = new Vector3(-5.7873f, -1f, 2.6127f);
+                voidLandParent.transform.localRotation = Quaternion.Euler(0f, 5.6605f, 0f);
                 gymInit = true;
             }
         }
@@ -230,16 +240,15 @@ namespace VoidLand
                     //turn GameObject off
                     temp.SetActive(false);
                 }
-                else if (temp.name == "--------------SCENE--------------")
+                else if (temp.name == "LOGIC")
                 {
-                    //turn off each child except Lighting and Effects
-                    temp.transform.GetChild(0).gameObject.SetActive(false);
-                    temp.transform.GetChild(1).gameObject.SetActive(false);
-                    temp.transform.GetChild(2).gameObject.SetActive(false);
-                    temp.transform.GetChild(3).gameObject.SetActive(false);
-                    //turn GameObjects off (only turns off some Lighting and Effects)
-                    temp.transform.GetChild(4).GetChild(0).gameObject.SetActive(false);
-                    temp.transform.GetChild(4).GetChild(3).gameObject.SetActive(false);
+                    for (int i = 0; i < temp.transform.GetChildCount(); i++)
+                    {
+                        if (!temp.transform.GetChild(i).gameObject.name.ToLower().Contains("handler"))
+                        {
+                            temp.transform.GetChild(i).gameObject.SetActive(false);
+                        }
+                    }
                 }
             }
         }
@@ -247,12 +256,13 @@ namespace VoidLand
         private void DeloadGym()
         {
             ResetStructures();
-            GameObject.Destroy(Calls.GameObjects.Gym.LOGIC.Bounds.SceneBoundaryPlayerGYM.GetGameObject());
+            GameObject.Destroy(GameObjects.Gym.LOGIC.Bounds.SceneBoundaryPlayerGYM.GetGameObject());
             TurnOffAllExtraRootObjects();
         }
 
         private void ResetStructures()
         {
+            PoolManager.instance.ResetPools(Il2Cpp.AssetType.Structure);
             PoolManager.instance.GetPool("Disc").Reset(true);
             PoolManager.instance.GetPool("Ball").Reset(true);
             PoolManager.instance.GetPool("Pillar").Reset(true);
@@ -261,6 +271,12 @@ namespace VoidLand
             PoolManager.instance.GetPool("BoulderBall").Reset(true);
             PoolManager.instance.GetPool("SmallRock").Reset(true);
             PoolManager.instance.GetPool("LargeRock").Reset(true);
+            PoolManager.instance.GetPool("Fruit").Reset(true);
+            PoolManager.instance.GetPool("DockedDisk").Reset(true);
+            PoolManager.instance.GetPool("BoulderBall").Reset(true);
+            PoolManager.instance.GetPool("PrisonedPillar").Reset(true);
+            PoolManager.instance.GetPool("CageCube").Reset(true);
+            PoolManager.instance.GetPool("WrappedWall").Reset(true);
         }
 
         private void ReLoadGym()
@@ -278,8 +294,17 @@ namespace VoidLand
             DisabledDDOLGameObjects.Clear();
         }
 
+        private static Camera[] cameras;
+        private static bool[] cameraOcclusionBeforeEditValues;
         private void LoadVoidLand()
         {
+            cameras = GameObject.FindObjectsOfType<Camera>();
+            cameraOcclusionBeforeEditValues = new bool[cameras.Length];
+            for (int i = 0; i < cameras.Length; i++)
+            {
+                cameraOcclusionBeforeEditValues[i] = cameras[i].useOcclusionCulling;
+                cameras[i].useOcclusionCulling = false;
+            }
             cube = new GameObject();
             cube.name = "Void Box";
             float size = (float)this.size;
@@ -290,10 +315,6 @@ namespace VoidLand
             plane.transform.position = new Vector3(0, 0, 0);
             plane.layer = 9;
             MeshCollider meshCollider = plane.AddComponent<MeshCollider>();
-            GroundCollider groundCollider = plane.AddComponent<GroundCollider>();
-            Component.Destroy(plane.GetComponent<BoxCollider>());
-            groundCollider.isMainGroundCollider = true;
-            groundCollider.collider = meshCollider;
             plane.GetComponent<Renderer>().material.shader = unlit;
             plane.GetComponent<Renderer>().material.color = new Color(r, g, b);
             GameObject plane2 = GameObject.Instantiate(plane);
